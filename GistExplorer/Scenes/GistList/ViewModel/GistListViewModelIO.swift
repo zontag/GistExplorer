@@ -14,7 +14,6 @@ protocol GistListViewModelOutput {
     var gistList: Driver<[Gist]> { get }
     var title: Driver<String> { get }
     var selectedGist: Signal<Gist> { get }
-    var isFiltering: Driver<Bool> { get }
     var isFavorites: Driver<Bool> { get }
     var onError: Signal<String> { get }
 }

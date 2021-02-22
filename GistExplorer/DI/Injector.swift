@@ -1,4 +1,6 @@
 import Foundation
+import UIKit
+import CoreData
 
 protocol Injectable {
     func callAsFunction<T>() -> T
@@ -29,11 +31,15 @@ extension Injector {
     static var appInjector: Injector {
         let injector = Injector()
 
+        if let viewContent = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+            injector.register(viewContent as NSManagedObjectContext)
+        }
+
         injector.register(GithubNetworkDispatcher(networkDispatcher: URLSession.shared) as GithubNetworkDispatchable)
 
         injector.register(GistPagedList(limit: 30, injector: injector) as GistPagedListModel)
 
-        injector.register(RealmFavoriteDB(injector: injector) as FavoriteDatabase)
+        injector.register(FavoriteDB(injector: injector) as FavoriteDatabase)
 
         injector.register(FavoritesGistManager(injector: injector) as FavoritesGistModel)
 

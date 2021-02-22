@@ -31,14 +31,16 @@ final class GistPagedList: GistPagedListModel {
         loadRelay
             .flatMapLatest({ self.githubNetwork.gistList(limit: self.limit, page: self.page) })
             .map { list in list.map(Map.mapResponseToGist(injector: self.injector)) }
+            .asInfallible(onErrorRecover: { (error) -> Infallible<[Gist]> in
+                self.errorRelay.accept(error.localizedDescription)
+                return Infallible.just(self.gistListRelay.value)
+            })
             .subscribe(onNext: { (items) in
                 if items.isEmpty { return }
                 self.page += 1
                 var gistList = self.gistListRelay.value
                 gistList.append(contentsOf: items)
                 self.gistListRelay.accept(gistList)
-            }, onError: { (error) in
-                self.errorRelay.accept(error.localizedDescription)
             })
             .disposed(by: disposeBag)
     }

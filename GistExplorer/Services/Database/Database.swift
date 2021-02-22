@@ -2,8 +2,7 @@ import Foundation
 import RxSwift
 import RxRelay
 import UIKit
-import RealmSwift
-import RxRealm
+import CoreData
 
 protocol FavoriteDatabase {
     var save: PublishRelay<Gist> { get }
@@ -11,7 +10,7 @@ protocol FavoriteDatabase {
     var favorites: BehaviorRelay<[Gist]> { get }
 }
 
-final class RealmFavoriteDB: FavoriteDatabase {
+final class FavoriteDB: FavoriteDatabase {
     private let disposeBag = DisposeBag()
 
     var save = PublishRelay<Gist>()
@@ -19,29 +18,34 @@ final class RealmFavoriteDB: FavoriteDatabase {
     var favorites = BehaviorRelay<[Gist]>(value: [])
 
     init(injector: Injectable) {
-        save.map(Map.mapGistToEnity)
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { (entity) in
-                guard let realm = try? Realm() else { return }
-                try? realm.write { realm.add(entity) }
+
+        let viewContext: NSManagedObjectContext = injector()
+
+        save.observe(on: MainScheduler.instance)
+            .map(Map.mapGistToEnity(viewContext))
+            .subscribe(onNext: { (_) in
+                viewContext.saveContext()
+                self.fetchAll(injector, viewContext)
             }).disposed(by: disposeBag)
 
         delete.observe(on: MainScheduler.instance)
             .subscribe(onNext: { (gist) in
-                guard let realm = try? Realm() else { return }
-                try? realm.write {
-                    if let entity = realm.objects(GistEntity.self).first(where: { $0.id == gist.id.value }) {
-                        realm.delete(entity)
-                    }
+                let fetchRequest: NSFetchRequest<GistEntity> = GistEntity.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "id==%@", gist.id.value)
+                if let result = try? viewContext.fetch(fetchRequest) {
+                    result.forEach(viewContext.delete)
                 }
+                viewContext.saveContext()
+                self.fetchAll(injector, viewContext)
             }).disposed(by: disposeBag)
 
-        guard let realm = try? Realm() else { return }
-        let favoritesResults = realm.objects(GistEntity.self)
+        self.fetchAll(injector, viewContext)
+    }
 
-        Observable.collection(from: favoritesResults, synchronousStart: false)
-            .map { $0.map(Map.mapEntityToGist(injector)) }
-            .bind(to: favorites)
-            .disposed(by: disposeBag)
+    private func fetchAll(_ injector: Injectable, _ viewContext: NSManagedObjectContext) {
+        let fetchRequest: NSFetchRequest<GistEntity> = GistEntity.fetchRequest()
+        if let result = try? viewContext.fetch(fetchRequest) {
+            favorites.accept(result.map(Map.mapEntityToGist(injector)))
+        }
     }
 }

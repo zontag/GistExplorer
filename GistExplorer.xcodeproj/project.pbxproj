@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6902FC5B25E3F1A9003CF285 /* GistListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6902FC5A25E3F1A9003CF285 /* GistListViewModelTests.swift */; };
+		6902FC6625E409AC003CF285 /* FavoritesGistModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6902FC6525E409AC003CF285 /* FavoritesGistModelMock.swift */; };
+		6902FC6A25E40B2B003CF285 /* GistPagedListModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6902FC6925E40B2B003CF285 /* GistPagedListModelMock.swift */; };
 		6912344825E142630020464D /* GistDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912344725E142630020464D /* GistDetailView.swift */; };
 		6912344D25E16FF80020464D /* GistDetailViewModelIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912344C25E16FF80020464D /* GistDetailViewModelIO.swift */; };
 		6912345225E170FA0020464D /* GistDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912345125E170FA0020464D /* GistDetailViewModel.swift */; };
@@ -14,11 +17,7 @@
 		6912345F25E1B6B30020464D /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912345E25E1B6B30020464D /* Filters.swift */; };
 		6912346525E1D4570020464D /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912346425E1D4570020464D /* Database.swift */; };
 		6912347525E286B40020464D /* Mappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912347425E286B40020464D /* Mappers.swift */; };
-		6912347B25E2A13E0020464D /* RxRealm in Frameworks */ = {isa = PBXBuildFile; productRef = 6912347A25E2A13E0020464D /* RxRealm */; };
-		6912348825E2B4B60020464D /* GistEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912348725E2B4B60020464D /* GistEntity.swift */; };
-		6912349025E2B4C20020464D /* FileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912348F25E2B4C20020464D /* FileEntity.swift */; };
 		6912349525E2CACD0020464D /* FavoritesGistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912349425E2CACD0020464D /* FavoritesGistManager.swift */; };
-		69123F7425DFEF9600085CF8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 69123F7325DFEF9600085CF8 /* Kingfisher */; };
 		69123F7A25DFF5EA00085CF8 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69123F7925DFF5EA00085CF8 /* UIColor+Extensions.swift */; };
 		69123F8225E002C100085CF8 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69123F8125E002C100085CF8 /* UIFont+Extensions.swift */; };
 		69123F8925E0169100085CF8 /* GistCellViewModelIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69123F8825E0169100085CF8 /* GistCellViewModelIO.swift */; };
@@ -36,23 +35,20 @@
 		69489EE725DEC9ED003E95FF /* GistListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489EE625DEC9ED003E95FF /* GistListViewController.swift */; };
 		69489EEF25DEC9F0003E95FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69489EEE25DEC9F0003E95FF /* Assets.xcassets */; };
 		69489EF225DEC9F0003E95FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69489EF025DEC9F0003E95FF /* LaunchScreen.storyboard */; };
-		69489EFD25DEC9F0003E95FF /* GistExplorerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489EFC25DEC9F0003E95FF /* GistExplorerTests.swift */; };
-		69489F0825DEC9F0003E95FF /* GistExplorerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F0725DEC9F0003E95FF /* GistExplorerUITests.swift */; };
 		69489F2025DECF2B003E95FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F1F25DECF2B003E95FF /* SceneDelegate.swift */; };
-		69489F2625DED3A2003E95FF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 69489F2525DED3A2003E95FF /* SnapKit */; };
 		69489F3D25DED7F6003E95FF /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F3C25DED7F6003E95FF /* AppCoordinator.swift */; };
 		69489F4525DED877003E95FF /* GistExplorerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F4425DED877003E95FF /* GistExplorerCoordinator.swift */; };
 		69489F4E25DEE86C003E95FF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F4D25DEE86C003E95FF /* Injector.swift */; };
-		69489F7F25DEF7CA003E95FF /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 69489F7E25DEF7CA003E95FF /* RxSwift */; };
-		69489F8125DEF7CA003E95FF /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 69489F8025DEF7CA003E95FF /* RxTest */; };
-		69489F8325DEF7CA003E95FF /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 69489F8225DEF7CA003E95FF /* RxRelay */; };
-		69489F8525DEF7CA003E95FF /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 69489F8425DEF7CA003E95FF /* RxCocoa */; };
-		69489F8725DEF7CA003E95FF /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 69489F8625DEF7CA003E95FF /* RxBlocking */; };
 		69489F9325DF2102003E95FF /* GistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F9225DF2102003E95FF /* GistCell.swift */; };
 		69489F9825DF2E25003E95FF /* GistListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F9725DF2E25003E95FF /* GistListFlowLayout.swift */; };
 		69489FA125DF30B6003E95FF /* GistListViewModelIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489FA025DF30B6003E95FF /* GistListViewModelIO.swift */; };
 		69489FB025DF333A003E95FF /* GistListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489FAF25DF333A003E95FF /* GistListViewModel.swift */; };
 		69489FC525DF44CF003E95FF /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489FC425DF44CF003E95FF /* Bindable.swift */; };
+		69E5CBEB25E3049300A83666 /* GistExplorer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69E5CBE925E3049300A83666 /* GistExplorer.xcdatamodeld */; };
+		69E5CBF625E31CC800A83666 /* NSManagedObjectContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E5CBF525E31CC800A83666 /* NSManagedObjectContext+Extensions.swift */; };
+		69E5CC1225E3277400A83666 /* GistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E5CC1125E3277400A83666 /* GistTests.swift */; };
+		B4A641311B24844EC15F1BC8 /* Pods_GistExplorerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823CD12DF527A963DC5E4B3E /* Pods_GistExplorerTests.framework */; };
+		C0759EF92A50956D1F038C82 /* Pods_GistExplorer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63351FCE59AFF6546CA33A74 /* Pods_GistExplorer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,16 +59,14 @@
 			remoteGlobalIDString = 69489EDE25DEC9ED003E95FF;
 			remoteInfo = GistExplorer;
 		};
-		69489F0425DEC9F0003E95FF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 69489ED725DEC9ED003E95FF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 69489EDE25DEC9ED003E95FF;
-			remoteInfo = GistExplorer;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		37079141CF898437C73CD321 /* Pods-GistExplorerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GistExplorerTests.debug.xcconfig"; path = "Target Support Files/Pods-GistExplorerTests/Pods-GistExplorerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		63351FCE59AFF6546CA33A74 /* Pods_GistExplorer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GistExplorer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6902FC5A25E3F1A9003CF285 /* GistListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistListViewModelTests.swift; sourceTree = "<group>"; };
+		6902FC6525E409AC003CF285 /* FavoritesGistModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesGistModelMock.swift; sourceTree = "<group>"; };
+		6902FC6925E40B2B003CF285 /* GistPagedListModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistPagedListModelMock.swift; sourceTree = "<group>"; };
 		6912344725E142630020464D /* GistDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistDetailView.swift; sourceTree = "<group>"; };
 		6912344C25E16FF80020464D /* GistDetailViewModelIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistDetailViewModelIO.swift; sourceTree = "<group>"; };
 		6912345125E170FA0020464D /* GistDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistDetailViewModel.swift; sourceTree = "<group>"; };
@@ -80,8 +74,6 @@
 		6912345E25E1B6B30020464D /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		6912346425E1D4570020464D /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		6912347425E286B40020464D /* Mappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mappers.swift; sourceTree = "<group>"; };
-		6912348725E2B4B60020464D /* GistEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistEntity.swift; sourceTree = "<group>"; };
-		6912348F25E2B4C20020464D /* FileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEntity.swift; sourceTree = "<group>"; };
 		6912349425E2CACD0020464D /* FavoritesGistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesGistManager.swift; sourceTree = "<group>"; };
 		69123F7925DFF5EA00085CF8 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		69123F8125E002C100085CF8 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
@@ -103,11 +95,7 @@
 		69489EF125DEC9F0003E95FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		69489EF325DEC9F0003E95FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69489EF825DEC9F0003E95FF /* GistExplorerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GistExplorerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		69489EFC25DEC9F0003E95FF /* GistExplorerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistExplorerTests.swift; sourceTree = "<group>"; };
 		69489EFE25DEC9F0003E95FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		69489F0325DEC9F0003E95FF /* GistExplorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GistExplorerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		69489F0725DEC9F0003E95FF /* GistExplorerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistExplorerUITests.swift; sourceTree = "<group>"; };
-		69489F0925DEC9F0003E95FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69489F1F25DECF2B003E95FF /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		69489F3C25DED7F6003E95FF /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		69489F4425DED877003E95FF /* GistExplorerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistExplorerCoordinator.swift; sourceTree = "<group>"; };
@@ -117,6 +105,14 @@
 		69489FA025DF30B6003E95FF /* GistListViewModelIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistListViewModelIO.swift; sourceTree = "<group>"; };
 		69489FAF25DF333A003E95FF /* GistListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistListViewModel.swift; sourceTree = "<group>"; };
 		69489FC425DF44CF003E95FF /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		69E5CBEA25E3049300A83666 /* GistExplorer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GistExplorer.xcdatamodel; sourceTree = "<group>"; };
+		69E5CBF525E31CC800A83666 /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
+		69E5CC1125E3277400A83666 /* GistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistTests.swift; sourceTree = "<group>"; };
+		69E5CC1525E327AA00A83666 /* GistExplorerTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GistExplorerTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		823CD12DF527A963DC5E4B3E /* Pods_GistExplorerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GistExplorerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A6C9E6E7C17AA66D8EDE614 /* Pods-GistExplorerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GistExplorerTests.release.xcconfig"; path = "Target Support Files/Pods-GistExplorerTests/Pods-GistExplorerTests.release.xcconfig"; sourceTree = "<group>"; };
+		D92CA8D0491DD61F053C4380 /* Pods-GistExplorer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GistExplorer.release.xcconfig"; path = "Target Support Files/Pods-GistExplorer/Pods-GistExplorer.release.xcconfig"; sourceTree = "<group>"; };
+		F0E4C4072A31205B72A544C1 /* Pods-GistExplorer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GistExplorer.debug.xcconfig"; path = "Target Support Files/Pods-GistExplorer/Pods-GistExplorer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,12 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6912347B25E2A13E0020464D /* RxRealm in Frameworks */,
-				69489F8325DEF7CA003E95FF /* RxRelay in Frameworks */,
-				69489F7F25DEF7CA003E95FF /* RxSwift in Frameworks */,
-				69489F8525DEF7CA003E95FF /* RxCocoa in Frameworks */,
-				69489F2625DED3A2003E95FF /* SnapKit in Frameworks */,
-				69123F7425DFEF9600085CF8 /* Kingfisher in Frameworks */,
+				C0759EF92A50956D1F038C82 /* Pods_GistExplorer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,37 +128,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69489F8125DEF7CA003E95FF /* RxTest in Frameworks */,
-				69489F8725DEF7CA003E95FF /* RxBlocking in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		69489F0025DEC9F0003E95FF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				B4A641311B24844EC15F1BC8 /* Pods_GistExplorerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37EA6265C6AFB6BAB3AD0BC8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				63351FCE59AFF6546CA33A74 /* Pods_GistExplorer.framework */,
+				823CD12DF527A963DC5E4B3E /* Pods_GistExplorerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6902FC5E25E4095C003CF285 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				6902FC6525E409AC003CF285 /* FavoritesGistModelMock.swift */,
+				6902FC6925E40B2B003CF285 /* GistPagedListModelMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		6912346325E1D43D0020464D /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				6912348625E2B4950020464D /* Entities */,
 				6912346425E1D4570020464D /* Database.swift */,
 			);
 			path = Database;
-			sourceTree = "<group>";
-		};
-		6912348625E2B4950020464D /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				6912348725E2B4B60020464D /* GistEntity.swift */,
-				6912348F25E2B4C20020464D /* FileEntity.swift */,
-			);
-			path = Entities;
 			sourceTree = "<group>";
 		};
 		69123F7825DFF5D600085CF8 /* Extensions */ = {
@@ -177,6 +168,7 @@
 				69123F8125E002C100085CF8 /* UIFont+Extensions.swift */,
 				69123FA025E023A900085CF8 /* Reactive+Extensions.swift */,
 				6912345925E1B4000020464D /* String+Extensions.swift */,
+				69E5CBF525E31CC800A83666 /* NSManagedObjectContext+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -268,8 +260,9 @@
 			children = (
 				69489EE125DEC9ED003E95FF /* GistExplorer */,
 				69489EFB25DEC9F0003E95FF /* GistExplorerTests */,
-				69489F0625DEC9F0003E95FF /* GistExplorerUITests */,
 				69489EE025DEC9ED003E95FF /* Products */,
+				D900C399B83638C6C00647EF /* Pods */,
+				37EA6265C6AFB6BAB3AD0BC8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -278,7 +271,6 @@
 			children = (
 				69489EDF25DEC9ED003E95FF /* GistExplorer.app */,
 				69489EF825DEC9F0003E95FF /* GistExplorerTests.xctest */,
-				69489F0325DEC9F0003E95FF /* GistExplorerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -304,24 +296,19 @@
 		69489EFB25DEC9F0003E95FF /* GistExplorerTests */ = {
 			isa = PBXGroup;
 			children = (
-				69489EFC25DEC9F0003E95FF /* GistExplorerTests.swift */,
+				6902FC5E25E4095C003CF285 /* Mocks */,
 				69489EFE25DEC9F0003E95FF /* Info.plist */,
+				69E5CC1525E327AA00A83666 /* GistExplorerTests-Bridging-Header.h */,
+				69E5CC1125E3277400A83666 /* GistTests.swift */,
+				6902FC5A25E3F1A9003CF285 /* GistListViewModelTests.swift */,
 			);
 			path = GistExplorerTests;
-			sourceTree = "<group>";
-		};
-		69489F0625DEC9F0003E95FF /* GistExplorerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				69489F0725DEC9F0003E95FF /* GistExplorerUITests.swift */,
-				69489F0925DEC9F0003E95FF /* Info.plist */,
-			);
-			path = GistExplorerUITests;
 			sourceTree = "<group>";
 		};
 		69489F1825DECC49003E95FF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				69E5CBE925E3049300A83666 /* GistExplorer.xcdatamodeld */,
 				69489EE225DEC9ED003E95FF /* AppDelegate.swift */,
 				69489F1F25DECF2B003E95FF /* SceneDelegate.swift */,
 			);
@@ -402,6 +389,17 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		D900C399B83638C6C00647EF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F0E4C4072A31205B72A544C1 /* Pods-GistExplorer.debug.xcconfig */,
+				D92CA8D0491DD61F053C4380 /* Pods-GistExplorer.release.xcconfig */,
+				37079141CF898437C73CD321 /* Pods-GistExplorerTests.debug.xcconfig */,
+				9A6C9E6E7C17AA66D8EDE614 /* Pods-GistExplorerTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -409,24 +407,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 69489F0C25DEC9F0003E95FF /* Build configuration list for PBXNativeTarget "GistExplorer" */;
 			buildPhases = (
+				6F88562B7F05B981634A2EC7 /* [CP] Check Pods Manifest.lock */,
 				69489EDB25DEC9ED003E95FF /* Sources */,
 				69489EDC25DEC9ED003E95FF /* Frameworks */,
 				69489EDD25DEC9ED003E95FF /* Resources */,
 				69489F8B25DEF859003E95FF /* Swift Lint */,
+				C8A967C1D37C61F5AAFF5519 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = GistExplorer;
-			packageProductDependencies = (
-				69489F2525DED3A2003E95FF /* SnapKit */,
-				69489F7E25DEF7CA003E95FF /* RxSwift */,
-				69489F8225DEF7CA003E95FF /* RxRelay */,
-				69489F8425DEF7CA003E95FF /* RxCocoa */,
-				69123F7325DFEF9600085CF8 /* Kingfisher */,
-				6912347A25E2A13E0020464D /* RxRealm */,
-			);
 			productName = GistExplorer;
 			productReference = 69489EDF25DEC9ED003E95FF /* GistExplorer.app */;
 			productType = "com.apple.product-type.application";
@@ -435,9 +427,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 69489F0F25DEC9F0003E95FF /* Build configuration list for PBXNativeTarget "GistExplorerTests" */;
 			buildPhases = (
+				9085DBCBE18E2BC967FAABDA /* [CP] Check Pods Manifest.lock */,
 				69489EF425DEC9F0003E95FF /* Sources */,
 				69489EF525DEC9F0003E95FF /* Frameworks */,
 				69489EF625DEC9F0003E95FF /* Resources */,
+				48983697C22D34FA0B64637F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -445,31 +439,9 @@
 				69489EFA25DEC9F0003E95FF /* PBXTargetDependency */,
 			);
 			name = GistExplorerTests;
-			packageProductDependencies = (
-				69489F8025DEF7CA003E95FF /* RxTest */,
-				69489F8625DEF7CA003E95FF /* RxBlocking */,
-			);
 			productName = GistExplorerTests;
 			productReference = 69489EF825DEC9F0003E95FF /* GistExplorerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		69489F0225DEC9F0003E95FF /* GistExplorerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 69489F1225DEC9F0003E95FF /* Build configuration list for PBXNativeTarget "GistExplorerUITests" */;
-			buildPhases = (
-				69489EFF25DEC9F0003E95FF /* Sources */,
-				69489F0025DEC9F0003E95FF /* Frameworks */,
-				69489F0125DEC9F0003E95FF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				69489F0525DEC9F0003E95FF /* PBXTargetDependency */,
-			);
-			name = GistExplorerUITests;
-			productName = GistExplorerUITests;
-			productReference = 69489F0325DEC9F0003E95FF /* GistExplorerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -485,10 +457,7 @@
 					};
 					69489EF725DEC9F0003E95FF = {
 						CreatedOnToolsVersion = 12.4;
-						TestTargetID = 69489EDE25DEC9ED003E95FF;
-					};
-					69489F0225DEC9F0003E95FF = {
-						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 						TestTargetID = 69489EDE25DEC9ED003E95FF;
 					};
 				};
@@ -502,19 +471,12 @@
 				Base,
 			);
 			mainGroup = 69489ED625DEC9ED003E95FF;
-			packageReferences = (
-				69489F2425DED3A2003E95FF /* XCRemoteSwiftPackageReference "SnapKit" */,
-				69489F7D25DEF7CA003E95FF /* XCRemoteSwiftPackageReference "RxSwift" */,
-				69123F7225DFEF9600085CF8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				6912347925E2A13E0020464D /* XCRemoteSwiftPackageReference "RxRealm" */,
-			);
 			productRefGroup = 69489EE025DEC9ED003E95FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				69489EDE25DEC9ED003E95FF /* GistExplorer */,
 				69489EF725DEC9F0003E95FF /* GistExplorerTests */,
-				69489F0225DEC9F0003E95FF /* GistExplorerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -536,16 +498,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		69489F0125DEC9F0003E95FF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		48983697C22D34FA0B64637F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GistExplorerTests/Pods-GistExplorerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GistExplorerTests/Pods-GistExplorerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GistExplorerTests/Pods-GistExplorerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		69489F8B25DEF859003E95FF /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -564,6 +536,67 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		6F88562B7F05B981634A2EC7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GistExplorer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9085DBCBE18E2BC967FAABDA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GistExplorerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8A967C1D37C61F5AAFF5519 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GistExplorer/Pods-GistExplorer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GistExplorer/Pods-GistExplorer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GistExplorer/Pods-GistExplorer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -573,14 +606,15 @@
 			files = (
 				6912347525E286B40020464D /* Mappers.swift in Sources */,
 				6912344825E142630020464D /* GistDetailView.swift in Sources */,
+				69E5CBEB25E3049300A83666 /* GistExplorer.xcdatamodeld in Sources */,
 				69123FA925E02B2A00085CF8 /* NetworkManager.swift in Sources */,
 				69489EE725DEC9ED003E95FF /* GistListViewController.swift in Sources */,
-				6912349025E2B4C20020464D /* FileEntity.swift in Sources */,
 				69123F9C25E01DF500085CF8 /* GistCellView.swift in Sources */,
 				69123FDB25E1400700085CF8 /* GistDetailViewController.swift in Sources */,
 				6912345225E170FA0020464D /* GistDetailViewModel.swift in Sources */,
 				6912349525E2CACD0020464D /* FavoritesGistManager.swift in Sources */,
 				69489FC525DF44CF003E95FF /* Bindable.swift in Sources */,
+				69E5CBF625E31CC800A83666 /* NSManagedObjectContext+Extensions.swift in Sources */,
 				69123F7A25DFF5EA00085CF8 /* UIColor+Extensions.swift in Sources */,
 				69489F3D25DED7F6003E95FF /* AppCoordinator.swift in Sources */,
 				69123F9125E0173100085CF8 /* GistCellViewModel.swift in Sources */,
@@ -604,7 +638,6 @@
 				69489F4E25DEE86C003E95FF /* Injector.swift in Sources */,
 				69489F2025DECF2B003E95FF /* SceneDelegate.swift in Sources */,
 				69489F9825DF2E25003E95FF /* GistListFlowLayout.swift in Sources */,
-				6912348825E2B4B60020464D /* GistEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,15 +645,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69489EFD25DEC9F0003E95FF /* GistExplorerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		69489EFF25DEC9F0003E95FF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				69489F0825DEC9F0003E95FF /* GistExplorerUITests.swift in Sources */,
+				6902FC6625E409AC003CF285 /* FavoritesGistModelMock.swift in Sources */,
+				6902FC6A25E40B2B003CF285 /* GistPagedListModelMock.swift in Sources */,
+				69E5CC1225E3277400A83666 /* GistTests.swift in Sources */,
+				6902FC5B25E3F1A9003CF285 /* GistListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,11 +659,6 @@
 			isa = PBXTargetDependency;
 			target = 69489EDE25DEC9ED003E95FF /* GistExplorer */;
 			targetProxy = 69489EF925DEC9F0003E95FF /* PBXContainerItemProxy */;
-		};
-		69489F0525DEC9F0003E95FF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 69489EDE25DEC9ED003E95FF /* GistExplorer */;
-			targetProxy = 69489F0425DEC9F0003E95FF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -703,7 +726,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -759,7 +782,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -771,6 +794,7 @@
 		};
 		69489F0D25DEC9F0003E95FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0E4C4072A31205B72A544C1 /* Pods-GistExplorer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -792,6 +816,7 @@
 		};
 		69489F0E25DEC9F0003E95FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D92CA8D0491DD61F053C4380 /* Pods-GistExplorer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -813,11 +838,14 @@
 		};
 		69489F1025DEC9F0003E95FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37079141CF898437C73CD321 /* Pods-GistExplorerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BSPWLUU5V5;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				INFOPLIST_FILE = GistExplorerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -827,6 +855,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zontag.GistExplorerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GistExplorerTests/GistExplorerTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GistExplorer.app/GistExplorer";
@@ -835,11 +865,14 @@
 		};
 		69489F1125DEC9F0003E95FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A6C9E6E7C17AA66D8EDE614 /* Pods-GistExplorerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BSPWLUU5V5;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				INFOPLIST_FILE = GistExplorerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -849,49 +882,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zontag.GistExplorerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GistExplorerTests/GistExplorerTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GistExplorer.app/GistExplorer";
-			};
-			name = Release;
-		};
-		69489F1325DEC9F0003E95FF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BSPWLUU5V5;
-				INFOPLIST_FILE = GistExplorerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zontag.GistExplorerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = GistExplorer;
-			};
-			name = Debug;
-		};
-		69489F1425DEC9F0003E95FF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BSPWLUU5V5;
-				INFOPLIST_FILE = GistExplorerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zontag.GistExplorerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = GistExplorer;
 			};
 			name = Release;
 		};
@@ -925,94 +919,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		69489F1225DEC9F0003E95FF /* Build configuration list for PBXNativeTarget "GistExplorerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				69489F1325DEC9F0003E95FF /* Debug */,
-				69489F1425DEC9F0003E95FF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		6912347925E2A13E0020464D /* XCRemoteSwiftPackageReference "RxRealm" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RxSwiftCommunity/RxRealm.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.1;
-			};
+/* Begin XCVersionGroup section */
+		69E5CBE925E3049300A83666 /* GistExplorer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				69E5CBEA25E3049300A83666 /* GistExplorer.xcdatamodel */,
+			);
+			currentVersion = 69E5CBEA25E3049300A83666 /* GistExplorer.xcdatamodel */;
+			path = GistExplorer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
 		};
-		69123F7225DFEF9600085CF8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.1.1;
-			};
-		};
-		69489F2425DED3A2003E95FF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.1;
-			};
-		};
-		69489F7D25DEF7CA003E95FF /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		6912347A25E2A13E0020464D /* RxRealm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6912347925E2A13E0020464D /* XCRemoteSwiftPackageReference "RxRealm" */;
-			productName = RxRealm;
-		};
-		69123F7325DFEF9600085CF8 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 69123F7225DFEF9600085CF8 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		69489F2525DED3A2003E95FF /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 69489F2425DED3A2003E95FF /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		69489F7E25DEF7CA003E95FF /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 69489F7D25DEF7CA003E95FF /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
-		69489F8025DEF7CA003E95FF /* RxTest */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 69489F7D25DEF7CA003E95FF /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxTest;
-		};
-		69489F8225DEF7CA003E95FF /* RxRelay */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 69489F7D25DEF7CA003E95FF /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxRelay;
-		};
-		69489F8425DEF7CA003E95FF /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 69489F7D25DEF7CA003E95FF /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		69489F8625DEF7CA003E95FF /* RxBlocking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 69489F7D25DEF7CA003E95FF /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxBlocking;
-		};
-/* End XCSwiftPackageProductDependency section */
+/* End XCVersionGroup section */
 	};
 	rootObject = 69489ED725DEC9ED003E95FF /* Project object */;
 }

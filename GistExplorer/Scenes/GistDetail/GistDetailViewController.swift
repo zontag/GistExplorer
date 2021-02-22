@@ -24,7 +24,8 @@ final class GistDetailViewController: UIViewController, Bindable {
             viewModel.output.filesSectionTitle.drive(contentView.filesLabel.rx.text)
             viewModel.output.filePreviewSectionTitle.drive(contentView.filesPreviewLabel.rx.text)
             viewModel.output.ownerName.drive(contentView.ownerNameLabel.rx.text)
-            viewModel.output.ownerImageURL.map({ KF.url($0) }).drive(contentView.ownerImageView.rx.kfBuilder)
+            viewModel.output.ownerImageURL.compactMap(Map.mapSelf).map({ KF.url($0) })
+                .drive(contentView.ownerImageView.rx.kfBuilder)
             viewModel.output.selectedFileURL.asObservable().bind(to: contentView.webView.rx.url)
             viewModel.output.files.drive(contentView.filesTableView.rx.items(cellIdentifier: "Cell")) { _, model, cell in
                 guard let textBinder = cell.textLabel?.rx.text else { return }

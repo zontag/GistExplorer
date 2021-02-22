@@ -36,9 +36,7 @@ final class Gist {
             .map({ _ in self })
             .bind(to: self.favoritesGistManager.delete)
             .disposed(by: disposeBag)
-
     }
-
 }
 
 extension Gist {
@@ -57,4 +55,19 @@ extension Gist {
             self.language = .init(value: language)
         }
     }
+}
+
+extension Gist: Equatable {
+    static func == (lhs: Gist, rhs: Gist) -> Bool {
+        lhs.id.value == rhs.id.value
+    }
+}
+
+extension Gist.File: Equatable {
+    static func == (lhs: Gist.File, rhs: Gist.File) -> Bool {
+        lhs.url.value == rhs.url.value
+            && lhs.name.value == rhs.name.value
+            && lhs.size.value == rhs.size.value
+    }
+
 }

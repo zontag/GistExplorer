@@ -76,7 +76,7 @@ final class GistListViewController: UICollectionViewController, Bindable {
             let cancelAction = UIAlertAction(title: "cancel", style: .cancel)
             actionController.addAction(retryAction)
             actionController.addAction(cancelAction)
-            actionController.present(self, animated: true, completion: nil)
+            self.present(actionController, animated: true, completion: nil)
         }.disposed(by: disposeBag)
 
         // Input

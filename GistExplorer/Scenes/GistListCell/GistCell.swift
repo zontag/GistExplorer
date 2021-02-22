@@ -35,7 +35,7 @@ final class GistCell: UICollectionViewCell, Bindable {
         disposeBag.insert {
             viewModel.output.gistType.drive(view.gistTypeLabel.rx.text)
             viewModel.output.ownerName.drive(view.ownerNameLabel.rx.text)
-            viewModel.output.ownerImageURL.map({ KF.url($0) }).drive(view.ownerImageView.rx.kfBuilder)
+            viewModel.output.ownerImageURL.compactMap(Map.mapSelf).map({ KF.url($0) }).drive(view.ownerImageView.rx.kfBuilder)
             viewModel.output.isFavorite.drive(view.favoriteSwitch.rx.value)
             view.favoriteSwitch.rx.isOn.skip(1).distinctUntilChanged().asSignal(onErrorJustReturn: false).emit(to: viewModel.input.favorite)
         }

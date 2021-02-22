@@ -60,7 +60,6 @@ final class GistListViewModel: GistListViewModelIO {
         self.output = Output(title: Driver.just("Gist List"),
                              gistList: filteredGistListRelay,
                              selectedGist: input.selectedGist.asSignal(),
-                             isFiltering: filterText.map({ $0.isEmpty }).asDriver(onErrorJustReturn: false),
                              isFavorites: showFavoritesRelay.asDriver(onErrorJustReturn: false),
                              onError: gistListManager.errorRelay.asSignal())
     }
@@ -79,7 +78,6 @@ extension GistListViewModel {
         var title: Driver<String>
         var gistList: Driver<[Gist]>
         var selectedGist: Signal<Gist>
-        var isFiltering: Driver<Bool>
         var isFavorites: Driver<Bool>
         var onError: Signal<String>
     }

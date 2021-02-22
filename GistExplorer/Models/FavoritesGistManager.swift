@@ -3,7 +3,6 @@ import RxSwift
 import RxRelay
 
 protocol FavoritesGistModel {
-    var database: FavoriteDatabase { get }
     var save: PublishRelay<Gist> { get }
     var delete: PublishRelay<Gist> { get }
     var favorites: BehaviorRelay<[Gist]> { get }
@@ -11,8 +10,8 @@ protocol FavoritesGistModel {
 
 final class FavoritesGistManager: FavoritesGistModel {
     private let disposeBag = DisposeBag()
+    private var database: FavoriteDatabase
 
-    var database: FavoriteDatabase
     var favorites = BehaviorRelay<[Gist]>(value: [])
     var save = PublishRelay<Gist>()
     var delete = PublishRelay<Gist>()
