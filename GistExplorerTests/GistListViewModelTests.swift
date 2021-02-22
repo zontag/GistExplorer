@@ -1,7 +1,13 @@
-import XCTest
-@testable import GistExplorer
+//
+//  GistListViewModelTests.swift
+//  GistExplorerTests
+//
+//  Created by Tiago Zontag on 22/02/21.
+//
 
-class GistExplorerTests: XCTestCase {
+import XCTest
+
+class GistListViewModelTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
