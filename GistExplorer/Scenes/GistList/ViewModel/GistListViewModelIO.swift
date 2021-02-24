@@ -7,15 +7,15 @@ protocol GistListViewModelInput {
     var filterText: PublishRelay<String> { get }
     var load: PublishRelay<Void> { get }
     var prefetchItemsAt: PublishRelay<Int> { get }
-    var showFavorites: BehaviorRelay<Bool> { get }
+    var showFavorites: PublishRelay<Void> { get }
 }
 
 protocol GistListViewModelOutput {
     var gistList: Driver<[Gist]> { get }
     var title: Driver<String> { get }
     var selectedGist: Signal<Gist> { get }
-    var isFavorites: Driver<Bool> { get }
     var onError: Signal<String> { get }
+    var showFavorites: Signal<Void> { get }
 }
 
 protocol GistListViewModelIO {

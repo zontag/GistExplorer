@@ -3,20 +3,27 @@ import RxRelay
 import RxSwift
 @testable import GistExplorer
 
-final class FavoritesGistModelMock: FavoritesGistModel {
+final class FavoriteDatabaseMock: FavoriteDatabase {
     private let disposeBag = DisposeBag()
 
+    private var favoritesRelay = BehaviorRelay<[Gist]>(value: [])
+    private var persistedIDsRelay = BehaviorRelay<[String]>(value: [])
+
+    var favorites: Infallible<[Gist]>
     var save = PublishRelay<Gist>()
     var delete = PublishRelay<Gist>()
-    var favorites = BehaviorRelay<[Gist]>(value: [])
+    var persistedIDs: Infallible<[String]>
 
     var gistList: [Gist] = [] {
         didSet {
-            self.favorites.accept(self.gistList)
+            self.favoritesRelay.accept(self.gistList)
         }
     }
 
     init() {
+        favorites = favoritesRelay.asInfallible(onErrorJustReturn: [])
+        persistedIDs = persistedIDsRelay.asInfallible(onErrorJustReturn: [])
+        
         save.bind { (gist) in
             self.gistList.append(gist)
         }.disposed(by: disposeBag)
@@ -27,6 +34,6 @@ final class FavoritesGistModelMock: FavoritesGistModel {
             }
         }.disposed(by: disposeBag)
 
-        self.favorites.accept(self.gistList)
+        self.favoritesRelay.accept(self.gistList)
     }
 }

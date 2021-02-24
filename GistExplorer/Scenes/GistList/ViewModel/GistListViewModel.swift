@@ -6,7 +6,6 @@ final class GistListViewModel: GistListViewModelIO {
 
     private let disposeBag = DisposeBag()
     private let gistListManager: GistPagedListModel
-    private let favoritesGistManager: FavoritesGistModel
 
     var input: GistListViewModelInput
     var output: GistListViewModelOutput
@@ -14,21 +13,21 @@ final class GistListViewModel: GistListViewModelIO {
     init(injector: Injectable) {
 
         gistListManager = injector()
-        favoritesGistManager = injector()
 
-        let showFavoritesRelay = BehaviorRelay<Bool>(value: false)
-
-        // Select between normal list and favorite list
-        let gistListStream = Observable.combineLatest(showFavoritesRelay, favoritesGistManager.favorites, gistListManager.gistListRelay)
-            .map { (showFavorites, favorites, gistList) -> [Gist] in
-                return showFavorites ? favorites : gistList
-            }
+        let showFavoritesRelay = PublishRelay<Void>()
 
         // Filtering gist list by owner name with inputed filter text
         let filterText = PublishRelay<String>()
         let filteredGistListRelay = Observable
-            .combineLatest(gistListStream, filterText)
+            .combineLatest(gistListManager.gistListInfallible.asObservable(), filterText)
             .map(Filter.filterGistListByOwnerName)
+            .map({ (list) -> [Gist] in
+                return list.map { (item) -> Gist in
+                    let database: FavoriteDatabase = injector()
+                    item.favoriteDB = database
+                    return item
+                }
+            })
             .asDriver(onErrorJustReturn: [])
 
         // Load gist list action
@@ -39,7 +38,7 @@ final class GistListViewModel: GistListViewModelIO {
         // Prefetching logic
         let prefetchItemsAt = PublishRelay<Int>()
         prefetchItemsAt.withLatestFrom(filteredGistListRelay.map(\.count)) { row, count in
-            row == count - 1 && !showFavoritesRelay.value
+            row == count - 1
         }.compactMap { (shouldPrefetch) -> Void? in
             shouldPrefetch ? () : nil
         }.bind(to: gistListManager.loadRelay)
@@ -47,9 +46,6 @@ final class GistListViewModel: GistListViewModelIO {
 
         // Gist selection
         let selectedGistRelay = PublishRelay<Gist>()
-        selectedGistRelay.bind(onNext: { value in
-            print(value)
-        }).disposed(by: disposeBag)
 
         self.input = Input(selectedGist: selectedGistRelay,
                            load: gistListManager.loadRelay,
@@ -60,8 +56,8 @@ final class GistListViewModel: GistListViewModelIO {
         self.output = Output(title: Driver.just("Gist List"),
                              gistList: filteredGistListRelay,
                              selectedGist: input.selectedGist.asSignal(),
-                             isFavorites: showFavoritesRelay.asDriver(onErrorJustReturn: false),
-                             onError: gistListManager.errorRelay.asSignal())
+                             onError: gistListManager.errorInfallible.asSignal(onErrorJustReturn: ""),
+                             showFavorites: showFavoritesRelay.asSignal())
     }
 }
 
@@ -71,14 +67,14 @@ extension GistListViewModel {
         var load: PublishRelay<Void>
         var filterText: PublishRelay<String>
         var prefetchItemsAt: PublishRelay<Int>
-        var showFavorites: BehaviorRelay<Bool>
+        var showFavorites: PublishRelay<Void>
     }
 
     struct Output: GistListViewModelOutput {
         var title: Driver<String>
         var gistList: Driver<[Gist]>
         var selectedGist: Signal<Gist>
-        var isFavorites: Driver<Bool>
         var onError: Signal<String>
+        var showFavorites: Signal<Void>
     }
 }

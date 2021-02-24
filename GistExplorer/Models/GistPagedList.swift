@@ -4,8 +4,8 @@ import RxRelay
 
 protocol GistPagedListModel {
     var loadRelay: PublishRelay<Void> { get }
-    var gistListRelay: BehaviorRelay<[Gist]> { get }
-    var errorRelay: PublishRelay<String> { get }
+    var gistListInfallible: Infallible<[Gist]> { get }
+    var errorInfallible: Infallible<String> { get }
 }
 
 final class GistPagedList: GistPagedListModel {
@@ -17,30 +17,40 @@ final class GistPagedList: GistPagedListModel {
     private var page = 0
 
     let loadRelay = PublishRelay<Void>()
-    let gistListRelay = BehaviorRelay<[Gist]>(value: [])
-    let errorRelay = PublishRelay<String>()
+    var gistListInfallible: Infallible<[Gist]>
+    var errorInfallible: Infallible<String>
+
+    private let gistListRelay = PublishRelay<[Gist]>()
+    private let errorRelay = PublishRelay<String>()
+    private var gistList: [Gist] = []
 
     init(limit: Int, injector: Injectable) {
         self.githubNetwork = injector()
         self.injector = injector
         self.limit = limit
+        gistListInfallible = gistListRelay.asInfallible(onErrorJustReturn: [])
+        errorInfallible = errorRelay.asInfallible(onErrorJustReturn: "")
         bind()
     }
 
     private func bind() {
         loadRelay
-            .flatMapLatest({ self.githubNetwork.gistList(limit: self.limit, page: self.page) })
-            .map { list in list.map(Map.mapResponseToGist(injector: self.injector)) }
+            .flatMapLatest({
+                self.githubNetwork.gistList(limit: self.limit, page: self.page)
+            })
+            .map { list in
+                list.map(Map.mapResponseToGist())
+            }
+            .scan([Gist](), accumulator: +)
             .asInfallible(onErrorRecover: { (error) -> Infallible<[Gist]> in
                 self.errorRelay.accept(error.localizedDescription)
-                return Infallible.just(self.gistListRelay.value)
+                self.page = 0
+                return Infallible.just([])
             })
             .subscribe(onNext: { (items) in
                 if items.isEmpty { return }
                 self.page += 1
-                var gistList = self.gistListRelay.value
-                gistList.append(contentsOf: items)
-                self.gistListRelay.accept(gistList)
+                self.gistListRelay.accept(items)
             })
             .disposed(by: disposeBag)
     }

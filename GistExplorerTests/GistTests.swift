@@ -15,7 +15,7 @@ class GistTests: XCTestCase {
     override func setUpWithError() throws {
         scheduler = TestScheduler(initialClock: 0)
         disposeBag = DisposeBag()
-        injector.register(FavoritesGistModelMock() as FavoritesGistModel)
+        injector.register(FavoriteDatabaseMock() as FavoriteDatabase)
     }
 
     override func tearDownWithError() throws { }
@@ -34,7 +34,7 @@ class GistTests: XCTestCase {
 
         // When
         let file = Gist.File(name: fileName, type: fileType, url: fileURL, size: fileSize, language: fileLaguage)
-        let gist = Gist(injector: injector, id: gistID, ownerName: gistOwnerName, ownerImage: gistOwnerImage, files: [file])
+        let gist = Gist(id: gistID, ownerName: gistOwnerName, ownerImage: gistOwnerImage, files: [file])
 
         // Then
         XCTAssertEqual(gist.files.value?.first, file)
@@ -42,36 +42,4 @@ class GistTests: XCTestCase {
         XCTAssertEqual(gist.ownerImage.value, gistOwnerImage)
         XCTAssertEqual(gist.id.value, gistID)
     }
-
-    func testGist_FavoriteBehavior() throws {
-
-        // Given
-        let isFavorite = scheduler.createObserver(Bool.self)
-
-        let file = Gist.File(name: "File Name", type: ".swift", url: nil, size: 0, language: "swift")
-        let gist = Gist(injector: injector, id: "123", ownerName: "Owner Name", ownerImage: nil, files: [file])
-
-        gist.isFavorite
-            .asDriver()
-            .drive(isFavorite)
-            .disposed(by: disposeBag)
-
-        // When
-        scheduler.createColdObservable([
-            .next(10, true),
-            .next(20, false)
-        ])
-            .bind(to: gist.favorite)
-            .disposed(by: disposeBag)
-
-        scheduler.start()
-
-        // Then
-        XCTAssertEqual(isFavorite.events, [
-            .next(0, false),
-            .next(10, true),
-            .next(20, false)
-        ])
-    }
-
 }

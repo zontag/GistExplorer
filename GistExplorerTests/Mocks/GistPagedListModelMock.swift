@@ -4,16 +4,23 @@ import RxSwift
 @testable import GistExplorer
 
 final class GistPagedListModelMock: GistPagedListModel {
+
     private let disposeBag = DisposeBag()
 
+    var gistListInfallible: Infallible<[Gist]>
+    var errorInfallible: Infallible<String>
     var loadRelay = PublishRelay<Void>()
-    var gistListRelay = BehaviorRelay<[Gist]>(value: [])
-    var errorRelay = PublishRelay<String>()
+
+    private var gistListRelay = BehaviorRelay<[Gist]>(value: [])
+    private var errorRelay = PublishRelay<String>()
 
     var gistList: [Gist] = []
     var error: String?
 
     init() {
+        gistListInfallible = gistListRelay.asInfallible(onErrorJustReturn: [])
+        errorInfallible = errorRelay.asInfallible(onErrorJustReturn: "error")
+
         loadRelay
             .asDriver(onErrorJustReturn: ())
             .drive(onNext: { _ in

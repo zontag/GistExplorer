@@ -11,7 +11,7 @@ final class GistCellViewModel: GistCellViewModelIO {
     var output: GistCellViewModelOutput
 
     struct Input: GistCellViewModelInput {
-        var favorite: PublishRelay<Bool>
+        var favorite: PublishRelay<Void>
     }
 
     struct Output: GistCellViewModelOutput {
@@ -22,7 +22,7 @@ final class GistCellViewModel: GistCellViewModelIO {
     }
 
     init(model: Gist) {
-        let favoriteRelay = PublishRelay<Bool>()
+        let favoriteRelay = PublishRelay<Void>()
         favoriteRelay.bind(to: model.favorite).disposed(by: disposeBag)
 
         self.input = Input(favorite: favoriteRelay)

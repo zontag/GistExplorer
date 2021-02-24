@@ -3,7 +3,7 @@ import RxSwift
 import RxCocoa
 
 protocol GistCellViewModelInput {
-    var favorite: PublishRelay<Bool> { get }
+    var favorite: PublishRelay<Void> { get }
 }
 
 protocol GistCellViewModelOutput {

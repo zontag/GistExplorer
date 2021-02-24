@@ -5,37 +5,43 @@ import RxRelay
 final class Gist {
 
     private let disposeBag = DisposeBag()
-    private let favoritesGistManager: FavoritesGistModel
+
+    var favoriteDB: FavoriteDatabase? { didSet { bindFavoriteDB() } }
 
     let id: BehaviorRelay<String>
     let ownerName: BehaviorRelay<String?>
     let ownerImage: BehaviorRelay<URL?>
     let files: BehaviorRelay<[File]?>
     let isFavorite = BehaviorRelay<Bool>(value: false)
-    let favorite = PublishRelay<Bool>()
+    let favorite = PublishRelay<Void>()
 
-    init(injector: Injectable, id: String, ownerName: String?, ownerImage: URL?, files: [File]?) {
+    init(id: String, ownerName: String?, ownerImage: URL?, files: [File]?) {
         self.id = .init(value: id)
         self.ownerName = .init(value: ownerName)
         self.ownerImage = .init(value: ownerImage)
         self.files = .init(value: files)
-        self.favoritesGistManager = injector()
+    }
 
-        favoritesGistManager.favorites.map { (list) -> Bool in
-            list.contains(where: { $0.id.value == self.id.value })
-        }.bind(to: isFavorite).disposed(by: disposeBag)
+    private func bindFavoriteDB() {
+        guard let favoriteDB = self.favoriteDB else {
+            preconditionFailure()
+        }
 
-        favorite
-            .filter(Map.mapSelf)
-            .map({ _ in self })
-            .bind(to: self.favoritesGistManager.save)
+        favoriteDB.persistedIDs
+            .map { (ids) -> Bool in
+                ids.contains(self.id.value)
+            }.bind(to: self.isFavorite)
             .disposed(by: disposeBag)
 
         favorite
-            .filter { !$0 }
-            .map({ _ in self })
-            .bind(to: self.favoritesGistManager.delete)
-            .disposed(by: disposeBag)
+            .map({ self.isFavorite.value })
+            .bind(onNext: { isFav in
+                if isFav {
+                    favoriteDB.delete.accept(self)
+                } else {
+                    favoriteDB.save.accept(self)
+                }
+            }).disposed(by: disposeBag)
     }
 }
 
@@ -53,6 +59,21 @@ extension Gist {
             self.url = .init(value: url)
             self.size = .init(value: size)
             self.language = .init(value: language)
+        }
+    }
+}
+
+extension Gist {
+    enum UseCase { }
+}
+
+extension Gist.UseCase {
+    struct GetFavorites {
+        let injector: Injectable
+
+        func callAsFunction() -> Infallible<[Gist]> {
+            let favoriteDB: FavoriteDatabase = injector()
+            return favoriteDB.favorites
         }
     }
 }

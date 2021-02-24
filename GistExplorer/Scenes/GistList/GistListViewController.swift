@@ -5,10 +5,10 @@ import RxCocoa
 final class GistListViewController: UICollectionViewController, Bindable {
 
     var viewModel: GistListViewModelIO?
-    private var isFavorites = false
     private var disposeBag = DisposeBag()
     private lazy var favoriteButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: nil)
     private var searchBar: UISearchBar?
+    private var gistList: [Gist] = []
 
     init() {
         super.init(collectionViewLayout: GistListFlowLayout())
@@ -24,7 +24,6 @@ final class GistListViewController: UICollectionViewController, Bindable {
         setupFavoriteFilter()
         setupSearchView()
         setupCollectionView()
-        viewModel?.input.load.accept(())
     }
 
     private func setupFavoriteFilter() {
@@ -58,14 +57,9 @@ final class GistListViewController: UICollectionViewController, Bindable {
         viewModel.output.gistList
             .drive(collectionView.rx.items(cellIdentifier: GistCell.identifier)) { (_, model, cell) in
                 guard let cell = cell as? GistCell else { preconditionFailure() }
+                cell.prepareForReuse()
                 cell.bind(to: GistCellViewModel(model: model))
             }.disposed(by: disposeBag)
-
-        // Favorite navigation bar button
-        viewModel.output.isFavorites
-            .map({ $0 ? .green : .appMediumGray })
-            .drive(favoriteButton.rx.tintColor)
-            .disposed(by: disposeBag)
 
         // Handle error
         viewModel.output.onError.emit { _ in
@@ -93,10 +87,7 @@ final class GistListViewController: UICollectionViewController, Bindable {
             .disposed(by: disposeBag)
 
         // Navigatonbar favorite button tap action
-        favoriteButton.rx.tap.map({
-            self.isFavorites.toggle()
-            return self.isFavorites
-        }).bind(to: viewModel.input.showFavorites)
+        favoriteButton.rx.tap.bind(to: viewModel.input.showFavorites)
         .disposed(by: disposeBag)
 
         // Searchbar text change
@@ -104,6 +95,7 @@ final class GistListViewController: UICollectionViewController, Bindable {
             .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
             .bind(to: viewModel.input.filterText)
             .disposed(by: disposeBag)
-    }
 
+        viewModel.input.load.accept(())
+    }
 }

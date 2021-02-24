@@ -37,10 +37,10 @@ final class GistCellView: UIView {
         return label
     }()
 
-    lazy var favoriteSwitch: UISwitch = {
-        let control = UISwitch(frame: .zero)
-        control.addTarget(self, action: #selector(stateChanged), for: .valueChanged)
-        return control
+    lazy var favoriteSwitch: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = .headline
+        return button
     }()
 
     init() {
@@ -52,6 +52,11 @@ final class GistCellView: UIView {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func setupFavoriteButton(save: Bool) {
+        favoriteSwitch.setTitleColor(save ? .red : .green, for: .normal)
+        favoriteSwitch.setTitle(save ? "Delete" : "Save", for: .normal)
     }
 
     private func addSubviews() {
@@ -80,14 +85,6 @@ final class GistCellView: UIView {
 
         hStack.snp.makeConstraints { (make) in
             make.leading.bottom.trailing.equalToSuperview().inset(10).priority(.required)
-        }
-    }
-
-    @objc func stateChanged(switchControl: UISwitch) {
-        if switchControl.isOn {
-            print("The Switch is On")
-        } else {
-            print("The Switch is Off")
         }
     }
 

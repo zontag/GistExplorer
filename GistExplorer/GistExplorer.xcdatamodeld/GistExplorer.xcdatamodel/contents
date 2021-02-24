@@ -15,7 +15,7 @@
         <relationship name="files" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FileEntity" inverseName="gist" inverseEntity="FileEntity"/>
     </entity>
     <elements>
-        <element name="GistEntity" positionX="-63" positionY="-18" width="128" height="89"/>
         <element name="FileEntity" positionX="-54" positionY="18" width="128" height="119"/>
+        <element name="GistEntity" positionX="-63" positionY="-18" width="128" height="89"/>
     </elements>
 </model>

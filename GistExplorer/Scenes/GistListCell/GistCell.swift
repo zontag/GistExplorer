@@ -7,7 +7,7 @@ import Kingfisher
 
 final class GistCell: UICollectionViewCell, Bindable {
 
-    private var disposeBag = DisposeBag()
+    private var disposeBag: DisposeBag?
 
     var viewModel: GistCellViewModelIO?
 
@@ -30,14 +30,22 @@ final class GistCell: UICollectionViewCell, Bindable {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = nil
+    }
+
     func bindViewModel() {
         guard let viewModel = self.viewModel else { return }
-        disposeBag.insert {
+        self.disposeBag = DisposeBag()
+        disposeBag?.insert {
             viewModel.output.gistType.drive(view.gistTypeLabel.rx.text)
             viewModel.output.ownerName.drive(view.ownerNameLabel.rx.text)
             viewModel.output.ownerImageURL.compactMap(Map.mapSelf).map({ KF.url($0) }).drive(view.ownerImageView.rx.kfBuilder)
-            viewModel.output.isFavorite.drive(view.favoriteSwitch.rx.value)
-            view.favoriteSwitch.rx.isOn.skip(1).distinctUntilChanged().asSignal(onErrorJustReturn: false).emit(to: viewModel.input.favorite)
+            viewModel.output.isFavorite.distinctUntilChanged()
+                .drive(onNext: view.setupFavoriteButton)
+            view.favoriteSwitch.rx.tap
+                .asSignal(onErrorJustReturn: ()).emit(to: viewModel.input.favorite)
         }
     }
 

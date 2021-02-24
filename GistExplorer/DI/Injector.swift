@@ -37,11 +37,9 @@ extension Injector {
 
         injector.register(GithubNetworkDispatcher(networkDispatcher: URLSession.shared) as GithubNetworkDispatchable)
 
-        injector.register(GistPagedList(limit: 30, injector: injector) as GistPagedListModel)
+        injector.register(GistPagedList(limit: 50, injector: injector) as GistPagedListModel)
 
         injector.register(FavoriteDB(injector: injector) as FavoriteDatabase)
-
-        injector.register(FavoritesGistManager(injector: injector) as FavoritesGistModel)
 
         return injector
     }

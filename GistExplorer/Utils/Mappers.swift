@@ -28,9 +28,9 @@ enum Map {
 
     static func mapSelf<T>(_ input: T) -> T { input }
 
-    static func mapResponseToGist(injector: Injectable) -> (GistResponse) -> Gist {
+    static func mapResponseToGist() -> (GistResponse) -> Gist {
         return { (response: GistResponse) in
-            Gist(injector: injector, id: response.id,
+            Gist(id: response.id,
                  ownerName: response.owner?.login ?? "",
                  ownerImage: URL(string: response.owner?.avatarURL ?? ""),
                  files: response.files?.values.map(Map.mapResponseToGistFile))
@@ -45,10 +45,9 @@ enum Map {
                   language: response.language)
     }
 
-    static func mapEntityToGist(_ injector: Injectable) -> (GistEntity) -> Gist {
+    static func mapEntityToGist() -> (GistEntity) -> Gist {
         return { (entity: GistEntity) -> Gist in
-            Gist(injector: injector,
-                 id: entity.id ?? "",
+            Gist(id: entity.id ?? "",
                  ownerName: entity.ownerName,
                  ownerImage: entity.ownerImage,
                  files: entity.files
@@ -66,22 +65,4 @@ enum Map {
                   size: Int(entity.size),
                   language: entity.language)
     }
-
-//    static func mapEntityToGist(_ injector: Injectable) -> (GistEntity) -> Gist {
-//        return { (entity: GistEntity) -> Gist in
-//            Gist(injector: injector,
-//                 id: entity.id,
-//                 ownerName: entity.ownerName,
-//                 ownerImage: URL(string: entity.ownerImage ?? ""),
-//                 files: entity.files.map(Map.mapEntityToFile))
-//        }
-//    }
-//
-//    static func mapEntityToFile(_ entity: FileEntity) -> Gist.File {
-//        Gist.File(name: entity.name,
-//                  type: entity.type,
-//                  url: URL(string: entity.url ?? ""),
-//                  size: entity.size,
-//                  language: entity.language)
-//    }
  }
