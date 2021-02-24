@@ -3,6 +3,7 @@ disabled_rules:
   - function_body_length # Functions bodies should not span too many lines - They shouldn't, but we're not enforcing a specific limit on this.
   - function_parameter_count # Number of function parameters should be low - They may need to be high for dependency injection.
   - type_body_length # Type bodies should not span too many lines - They shouldn't, but we're not enforcing a specific limit on this.
+  - line_length
 opt_in_rules:
   - contains_over_first_not_nil # Prefer contains over first(where:) != nil
   - empty_count # Prefer checking isEmpty over comparing count to zero.
@@ -30,10 +31,10 @@ trailing_whitespace:
   ignores_empty_lines: true # don't try to make people delete trailing whitespace from empty lines
 
 identifier_name:
-  excluded: [id, uid, rg, cpf, cnh]
+  excluded: [id, uid, vc]
 
 type_name:
-  excluded: [id, uid, rg, cpf, cnh]
+  excluded: [id, uid]
 
 line_length:
   ignores_urls: true
@@ -47,3 +48,4 @@ cyclomatic_complexity:
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Sudo/Library/Vendor
   - sudoTests/Library/Vendor
+  - Pods

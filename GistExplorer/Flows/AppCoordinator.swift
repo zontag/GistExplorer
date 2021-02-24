@@ -11,8 +11,7 @@ final class AppCoordinator: Coordinator {
     private var gistExplorerCoordinator: GistExplorerCoordinator?
 
     var injector: Injectable = {
-        let injector = Injector()
-        return injector
+        Injector.appInjector
     }()
 
     init(window: UIWindow) {
