@@ -41,25 +41,27 @@ final class GistListViewController: UICollectionViewController, Bindable {
         self.collectionView.register(GistCell.self, forCellWithReuseIdentifier: GistCell.identifier)
         self.collectionView.dataSource = nil
         self.collectionView.allowsSelection = true
+        self.collectionView.keyboardDismissMode = .onDrag
     }
 
     // MARK: - Bindable
     func bindViewModel() {
         guard let viewModel = self.viewModel else { return }
+        unowned let vc = self
 
         // Output
         // Title
         viewModel.output.title
-            .drive(self.rx.title)
-            .disposed(by: disposeBag)
+            .drive(vc.rx.title)
+            .disposed(by: viewModel.disposeBag)
 
         // CollectionView Adapter
         viewModel.output.gistList
-            .drive(collectionView.rx.items(cellIdentifier: GistCell.identifier)) { (_, model, cell) in
+            .drive(vc.collectionView.rx.items(cellIdentifier: GistCell.identifier)) { (_, model, cell) in
                 guard let cell = cell as? GistCell else { preconditionFailure() }
                 cell.prepareForReuse()
                 cell.bind(to: GistCellViewModel(model: model))
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
 
         // Handle error
         viewModel.output.onError.emit { _ in
@@ -70,31 +72,31 @@ final class GistListViewController: UICollectionViewController, Bindable {
             let cancelAction = UIAlertAction(title: "cancel", style: .cancel)
             actionController.addAction(retryAction)
             actionController.addAction(cancelAction)
-            self.present(actionController, animated: true, completion: nil)
-        }.disposed(by: disposeBag)
+           vc.present(actionController, animated: true, completion: nil)
+        }.disposed(by: viewModel.disposeBag)
 
         // Input
         // Item selection
-        collectionView.rx.modelSelected(Gist.self)
+        vc.collectionView.rx.modelSelected(Gist.self)
             .bind(to: viewModel.input.selectedGist)
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.disposeBag)
 
         // CollectionView Prefetch Items
-        collectionView.rx.prefetchItems
+        vc.collectionView.rx.prefetchItems
             .compactMap(\.last)
             .map(\.row)
             .bind(to: viewModel.input.prefetchItemsAt)
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.disposeBag)
 
         // Navigatonbar favorite button tap action
-        favoriteButton.rx.tap.bind(to: viewModel.input.showFavorites)
-        .disposed(by: disposeBag)
+        vc.favoriteButton.rx.tap.bind(to: viewModel.input.showFavorites)
+        .disposed(by: viewModel.disposeBag)
 
         // Searchbar text change
-        searchBar?.rx.text.orEmpty
+        vc.searchBar?.rx.text.orEmpty
             .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
             .bind(to: viewModel.input.filterText)
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.disposeBag)
 
         viewModel.input.load.accept(())
     }

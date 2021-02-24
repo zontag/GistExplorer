@@ -7,12 +7,11 @@ import Kingfisher
 
 final class GistCell: UICollectionViewCell, Bindable {
 
-    private var disposeBag: DisposeBag?
-
-    var viewModel: GistCellViewModelIO?
-
     static let identifier = String(describing: GistCell.self)
 
+    private var disposeBag = DisposeBag()
+
+    var viewModel: GistCellViewModelIO?
     var view = GistCellView()
 
     // MARK: - Init
@@ -32,19 +31,21 @@ final class GistCell: UICollectionViewCell, Bindable {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        disposeBag = nil
+        self.disposeBag = DisposeBag()
+        self.viewModel?.prepareForReuse()
+        self.viewModel = nil
     }
 
     func bindViewModel() {
         guard let viewModel = self.viewModel else { return }
-        self.disposeBag = DisposeBag()
-        disposeBag?.insert {
-            viewModel.output.gistType.drive(view.gistTypeLabel.rx.text)
-            viewModel.output.ownerName.drive(view.ownerNameLabel.rx.text)
-            viewModel.output.ownerImageURL.compactMap(Map.mapSelf).map({ KF.url($0) }).drive(view.ownerImageView.rx.kfBuilder)
+        unowned let cell = self
+        viewModel.disposeBag.insert {
+            viewModel.output.gistType.drive(cell.view.gistTypeLabel.rx.text)
+            viewModel.output.ownerName.drive(cell.view.ownerNameLabel.rx.text)
+            viewModel.output.ownerImageURL.compactMap(Map.mapSelf).map({ KF.url($0) }).drive(cell.view.ownerImageView.rx.kfBuilder)
             viewModel.output.isFavorite.distinctUntilChanged()
-                .drive(onNext: view.setupFavoriteButton)
-            view.favoriteSwitch.rx.tap
+                .drive(onNext: cell.view.setupFavoriteButton)
+            cell.view.favoriteSwitch.rx.tap
                 .asSignal(onErrorJustReturn: ()).emit(to: viewModel.input.favorite)
         }
     }

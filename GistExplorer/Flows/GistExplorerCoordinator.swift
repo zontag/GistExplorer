@@ -9,6 +9,9 @@ final class GistExplorerCoordinator: Coordinator {
     private let presenter: UINavigationController
     private let injector: Injectable
 
+    private let favoritesViewController = FavoritesViewController()
+    private let gistDetailViewController = GistDetailViewController()
+
     init(presenter: UINavigationController, injector: Injectable) {
         self.presenter = presenter
         self.injector = injector
@@ -28,20 +31,18 @@ final class GistExplorerCoordinator: Coordinator {
     }
 
     private func navigateToDetail(_ gist: Gist) {
-        let vc = GistDetailViewController()
         let viewModel = GistDetailViewModel(model: gist)
-        vc.bind(to: viewModel)
-        presenter.show(vc, sender: nil)
+        gistDetailViewController.bind(to: viewModel)
+        presenter.show(gistDetailViewController, sender: nil)
     }
 
     private func navigateToFavorites() {
-        let vc = FavoritesViewController()
         let viewModel = FavoritesViewModel(injector: injector)
         viewModel.output.selectedGist
-            .do(onNext: { _ in vc.dismiss(animated: true, completion: nil) })
+            .do(onNext: { [weak self] _ in self?.favoritesViewController.dismiss(animated: true, completion: nil) })
             .emit(onNext: navigateToDetail)
-            .disposed(by: disposeBag)
-        vc.bind(to: viewModel)
-        presenter.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+            .disposed(by: viewModel.disposeBag)
+        favoritesViewController.bind(to: viewModel)
+        presenter.present(UINavigationController(rootViewController: favoritesViewController), animated: true, completion: nil)
     }
 }

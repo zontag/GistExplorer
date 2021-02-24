@@ -4,6 +4,7 @@ import RxCocoa
 
 final class GistDetailViewModel: GistDetailViewModelIO {
 
+    var disposeBag = DisposeBag()
     var input: GistDetailViewModelInput
     var output: GistDetailViewModelOutput
 

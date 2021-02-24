@@ -13,6 +13,7 @@ protocol FavoritesViewModelOutput {
 }
 
 protocol FavoritesViewModelIO {
+    var disposeBag: DisposeBag { get }
     var input: FavoritesViewModelInput { get }
     var output: FavoritesViewModelOutput { get }
 }

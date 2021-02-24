@@ -3,8 +3,8 @@ import RxSwift
 import RxCocoa
 
 final class FavoritesViewModel: FavoritesViewModelIO {
+    var disposeBag = DisposeBag()
     var input: FavoritesViewModelInput
-
     var output: FavoritesViewModelOutput
 
     init(injector: Injectable) {

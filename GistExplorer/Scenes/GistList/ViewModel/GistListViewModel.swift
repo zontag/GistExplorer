@@ -4,9 +4,9 @@ import RxCocoa
 
 final class GistListViewModel: GistListViewModelIO {
 
-    private let disposeBag = DisposeBag()
     private let gistListManager: GistPagedListModel
 
+    let disposeBag = DisposeBag()
     var input: GistListViewModelInput
     var output: GistListViewModelOutput
 
