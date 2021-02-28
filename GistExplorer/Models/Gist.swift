@@ -69,10 +69,8 @@ extension Gist {
 
 extension Gist.UseCase {
     struct GetFavorites {
-        let injector: Injectable
-
+        let favoriteDB: FavoriteDatabase
         func callAsFunction() -> Infallible<[Gist]> {
-            let favoriteDB: FavoriteDatabase = injector()
             return favoriteDB.favorites
         }
     }

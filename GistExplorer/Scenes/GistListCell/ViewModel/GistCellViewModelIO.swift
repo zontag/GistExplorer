@@ -17,6 +17,4 @@ protocol GistCellViewModelIO {
     var disposeBag: DisposeBag { get }
     var input: GistCellViewModelInput { get }
     var output: GistCellViewModelOutput { get }
-
-    func prepareForReuse()
 }

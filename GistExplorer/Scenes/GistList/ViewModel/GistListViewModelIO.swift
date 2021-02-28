@@ -19,7 +19,6 @@ protocol GistListViewModelOutput {
 }
 
 protocol GistListViewModelIO {
-    var disposeBag: DisposeBag { get }
     var input: GistListViewModelInput { get }
     var output: GistListViewModelOutput { get }
 }

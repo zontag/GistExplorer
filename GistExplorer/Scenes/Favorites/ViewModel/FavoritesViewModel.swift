@@ -7,15 +7,15 @@ final class FavoritesViewModel: FavoritesViewModelIO {
     var input: FavoritesViewModelInput
     var output: FavoritesViewModelOutput
 
-    init(injector: Injectable) {
+    init(favoriteDB: FavoriteDatabase) {
 
         // Gist selection
         let selectedGistRelay = PublishRelay<Gist>()
 
-        let getFavoritesUseCase = Gist.UseCase.GetFavorites(injector: injector)()
+        let getFavoritesUseCase = Gist.UseCase.GetFavorites(favoriteDB: favoriteDB)()
         .map({ (list) -> [Gist] in
             return list.map { (item) -> Gist in
-                let database: FavoriteDatabase = injector()
+                let database: FavoriteDatabase = favoriteDB
                 item.favoriteDB = database
                 return item
             }

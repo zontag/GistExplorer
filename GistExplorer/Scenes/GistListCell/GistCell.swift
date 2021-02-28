@@ -32,14 +32,13 @@ final class GistCell: UICollectionViewCell, Bindable {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.disposeBag = DisposeBag()
-        self.viewModel?.prepareForReuse()
         self.viewModel = nil
     }
 
     func bindViewModel() {
         guard let viewModel = self.viewModel else { return }
         unowned let cell = self
-        viewModel.disposeBag.insert {
+        disposeBag.insert {
             viewModel.output.gistType.drive(cell.view.gistTypeLabel.rx.text)
             viewModel.output.ownerName.drive(cell.view.ownerNameLabel.rx.text)
             viewModel.output.ownerImageURL.compactMap(Map.mapSelf).map({ KF.url($0) }).drive(cell.view.ownerImageView.rx.kfBuilder)

@@ -37,7 +37,6 @@
 		69489F2025DECF2B003E95FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F1F25DECF2B003E95FF /* SceneDelegate.swift */; };
 		69489F3D25DED7F6003E95FF /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F3C25DED7F6003E95FF /* AppCoordinator.swift */; };
 		69489F4525DED877003E95FF /* GistExplorerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F4425DED877003E95FF /* GistExplorerCoordinator.swift */; };
-		69489F4E25DEE86C003E95FF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F4D25DEE86C003E95FF /* Injector.swift */; };
 		69489F9325DF2102003E95FF /* GistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F9225DF2102003E95FF /* GistCell.swift */; };
 		69489F9825DF2E25003E95FF /* GistListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489F9725DF2E25003E95FF /* GistListFlowLayout.swift */; };
 		69489FA125DF30B6003E95FF /* GistListViewModelIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69489FA025DF30B6003E95FF /* GistListViewModelIO.swift */; };
@@ -100,7 +99,6 @@
 		69489F1F25DECF2B003E95FF /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		69489F3C25DED7F6003E95FF /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		69489F4425DED877003E95FF /* GistExplorerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistExplorerCoordinator.swift; sourceTree = "<group>"; };
-		69489F4D25DEE86C003E95FF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		69489F9225DF2102003E95FF /* GistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistCell.swift; sourceTree = "<group>"; };
 		69489F9725DF2E25003E95FF /* GistListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistListFlowLayout.swift; sourceTree = "<group>"; };
 		69489FA025DF30B6003E95FF /* GistListViewModelIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistListViewModelIO.swift; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 				69123FA625E02AB400085CF8 /* Services */,
 				69123F7825DFF5D600085CF8 /* Extensions */,
 				69489FC325DF44B7003E95FF /* Utils */,
-				69489F4C25DEE84B003E95FF /* DI */,
 				69489F3B25DED669003E95FF /* Flows */,
 				69489F3925DED644003E95FF /* Scenes */,
 				69489F1825DECC49003E95FF /* Supporting Files */,
@@ -345,14 +342,6 @@
 				69489F4425DED877003E95FF /* GistExplorerCoordinator.swift */,
 			);
 			path = Flows;
-			sourceTree = "<group>";
-		};
-		69489F4C25DEE84B003E95FF /* DI */ = {
-			isa = PBXGroup;
-			children = (
-				69489F4D25DEE86C003E95FF /* Injector.swift */,
-			);
-			path = DI;
 			sourceTree = "<group>";
 		};
 		69489F5825DEEBBF003E95FF /* GistDetail */ = {
@@ -659,7 +648,6 @@
 				6959929425E60C2F00968C00 /* FavoritesViewModel.swift in Sources */,
 				6912346525E1D4570020464D /* Database.swift in Sources */,
 				69123FCE25E03FD200085CF8 /* Gist.swift in Sources */,
-				69489F4E25DEE86C003E95FF /* Injector.swift in Sources */,
 				69489F2025DECF2B003E95FF /* SceneDelegate.swift in Sources */,
 				69489F9825DF2E25003E95FF /* GistListFlowLayout.swift in Sources */,
 			);
