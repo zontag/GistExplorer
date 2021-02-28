@@ -4,26 +4,21 @@ import RxCocoa
 
 final class GistListViewModel: GistListViewModelIO {
 
-    private let gistListManager: GistPagedListModel
-
     let disposeBag = DisposeBag()
     var input: GistListViewModelInput
     var output: GistListViewModelOutput
 
-    init(injector: Injectable) {
-
-        gistListManager = injector()
+    init(model: GistPagedListModel, database: FavoriteDatabase) {
 
         let showFavoritesRelay = PublishRelay<Void>()
 
         // Filtering gist list by owner name with inputed filter text
         let filterText = PublishRelay<String>()
         let filteredGistListRelay = Observable
-            .combineLatest(gistListManager.gistListInfallible.asObservable(), filterText)
+            .combineLatest(model.gistListInfallible.asObservable(), filterText)
             .map(Filter.filterGistListByOwnerName)
             .map({ (list) -> [Gist] in
                 return list.map { (item) -> Gist in
-                    let database: FavoriteDatabase = injector()
                     item.favoriteDB = database
                     return item
                 }
@@ -32,23 +27,22 @@ final class GistListViewModel: GistListViewModelIO {
 
         // Load gist list action
         let load = PublishRelay<Void>()
-        load.bind(to: gistListManager.loadRelay)
+        load.bind(to: model.loadRelay)
             .disposed(by: disposeBag)
 
         // Prefetching logic
         let prefetchItemsAt = PublishRelay<Int>()
         prefetchItemsAt.withLatestFrom(filteredGistListRelay.map(\.count)) { row, count in
             row == count - 1
-        }.compactMap { (shouldPrefetch) -> Void? in
-            shouldPrefetch ? () : nil
-        }.bind(to: gistListManager.loadRelay)
+        }.compactMap { (shouldPrefetch) -> Void? in shouldPrefetch ? () : nil
+        }.bind(to: model.loadRelay)
         .disposed(by: disposeBag)
 
         // Gist selection
         let selectedGistRelay = PublishRelay<Gist>()
 
         self.input = Input(selectedGist: selectedGistRelay,
-                           load: gistListManager.loadRelay,
+                           load: model.loadRelay,
                            filterText: filterText,
                            prefetchItemsAt: prefetchItemsAt,
                            showFavorites: showFavoritesRelay)
@@ -56,7 +50,7 @@ final class GistListViewModel: GistListViewModelIO {
         self.output = Output(title: Driver.just("Gist List"),
                              gistList: filteredGistListRelay,
                              selectedGist: input.selectedGist.asSignal(),
-                             onError: gistListManager.errorInfallible.asSignal(onErrorJustReturn: ""),
+                             onError: model.errorInfallible.asSignal(onErrorJustReturn: ""),
                              showFavorites: showFavoritesRelay.asSignal())
     }
 }

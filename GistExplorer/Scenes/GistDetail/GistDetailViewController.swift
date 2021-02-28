@@ -16,23 +16,24 @@ final class GistDetailViewController: UIViewController, Bindable {
 
     func bindViewModel() {
         guard let viewModel = viewModel else { return }
-        unowned let vc = self
-        vc.contentView.filesTableView.dataSource = nil
-        viewModel.disposeBag.insert {
+        contentView.filesTableView.dataSource = nil
+        contentView.filesTableView.delegate = nil
             // Input
-            vc.contentView.filesTableView.rx.modelSelected(Gist.File.self).bind(to: viewModel.input.selectedFile)
-            // Output
-            viewModel.output.title.drive(vc.rx.title)
-            viewModel.output.filesSectionTitle.drive(vc.contentView.filesLabel.rx.text)
-            viewModel.output.filePreviewSectionTitle.drive(vc.contentView.filesPreviewLabel.rx.text)
-            viewModel.output.ownerName.drive(vc.contentView.ownerNameLabel.rx.text)
-            viewModel.output.ownerImageURL.compactMap(Map.mapSelf).map({ KF.url($0) })
-                .drive(vc.contentView.ownerImageView.rx.kfBuilder)
-            viewModel.output.selectedFileURL.asObservable().bind(to: vc.contentView.webView.rx.url)
-            viewModel.output.files.drive(vc.contentView.filesTableView.rx.items(cellIdentifier: "Cell")) { _, model, cell in
-                guard let textBinder = cell.textLabel?.rx.text else { return }
-                model.name.asDriver().drive(textBinder).disposed(by: viewModel.disposeBag)
-            }
-        }
+        contentView.filesTableView.rx.modelSelected(Gist.File.self)
+            .bind(to: viewModel.input.selectedFile)
+            .disposed(by: disposeBag)
+        // Output
+        viewModel.output.title.drive(self.rx.title).disposed(by: disposeBag)
+        viewModel.output.filesSectionTitle.drive(self.contentView.filesLabel.rx.text).disposed(by: disposeBag)
+        viewModel.output.filePreviewSectionTitle.drive(self.contentView.filesPreviewLabel.rx.text).disposed(by: disposeBag)
+        viewModel.output.ownerName.drive(self.contentView.ownerNameLabel.rx.text).disposed(by: disposeBag)
+        viewModel.output.ownerImageURL.compactMap(Map.mapSelf).map({ KF.url($0) })
+            .drive(self.contentView.ownerImageView.rx.kfBuilder).disposed(by: disposeBag)
+        viewModel.output.selectedFileURL.asObservable().bind(to: self.contentView.webView.rx.url).disposed(by: disposeBag)
+        viewModel.output.files.drive(self.contentView.filesTableView.rx.items(cellIdentifier: "Cell")) { [weak self] _, model, cell in
+            guard let self = self else { return }
+            guard let textBinder = cell.textLabel?.rx.text else { return }
+            model.name.asDriver().drive(textBinder).disposed(by: self.disposeBag)
+        }.disposed(by: disposeBag)
     }
 }
