@@ -11,19 +11,16 @@ class GistListViewModelTests: XCTestCase {
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
     var viewModel: GistListViewModel!
-    let injector = Injector()
 
-    let favoriteDatabaseMock: FavoriteDatabase = FavoriteDatabaseMock()
+    let favoriteDatabaseMock = FavoriteDatabaseMock()
     let gistPagedListModel = GistPagedListModelMock()
 
     override func setUpWithError() throws {
         scheduler = TestScheduler(initialClock: 0)
         disposeBag = DisposeBag()
-        injector.register(gistPagedListModel as GistPagedListModel)
-        injector.register(favoriteDatabaseMock as FavoriteDatabase)
         gistPagedListModel.error = nil
         gistPagedListModel.gistList = []
-        viewModel = GistListViewModel(injector: injector)
+        viewModel = GistListViewModel(model: gistPagedListModel, database: favoriteDatabaseMock)
         viewModel.input.filterText.accept("")
         viewModel.input.showFavorites.accept(())
     }
