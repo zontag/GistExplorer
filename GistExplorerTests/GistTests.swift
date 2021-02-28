@@ -10,12 +10,12 @@ class GistTests: XCTestCase {
 
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
-    let injector = Injector()
+    var favoritesDB: FavoriteDatabase!
 
     override func setUpWithError() throws {
         scheduler = TestScheduler(initialClock: 0)
         disposeBag = DisposeBag()
-        injector.register(FavoriteDatabaseMock() as FavoriteDatabase)
+        favoritesDB = FavoriteDatabaseMock()
     }
 
     override func tearDownWithError() throws { }
